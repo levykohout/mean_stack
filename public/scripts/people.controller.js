@@ -6,6 +6,7 @@ function PeopleController($http) {
   var controller = this;
   controller.people = [];
 
+//function to retrieve data from the database using GET request
   controller.listPeople = function(){
     console.log('Listing people');
     $http.get('/people').then(function(response){
@@ -17,11 +18,12 @@ function PeopleController($http) {
     });
   };
 
+// function to add person to the data with a post request
   controller.addPerson = function() {
+
     var data = {name: controller.name,
                 hometown:controller.hometown,
                 movie:controller.favoriteMovie
-
         };
         console.log(data);
 
@@ -30,25 +32,10 @@ function PeopleController($http) {
       controller.listPeople();
     });
   };
-
-  // controller.propertyName = 'name';
-  //   controller.reverse = true;
-  //
-  //
-  //   controller.sortBy = function(propertyName) {
-  //     controller.reverse = (controller.propertyName === propertyName) ? !controller.reverse : false;
-  //     controller.propertyName = propertyName;
-  //   };
-
-
-
-
-      controller.orderByMe = function(x) {
-          console.log(x);
-        controller.myOrderBy = x;
+// function to sort the people array based on dropdown selection
+      controller.orderByMe = function(selected) {
+          console.log(selected);
+        controller.myOrderBy = selected;
     };
-
-
-
 
 }
