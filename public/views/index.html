@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="meanApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>MEAN Stack!</title>
+
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+
+    <script src="scripts/app.module.js" charset="utf-8"></script>
+    <script src="scripts/people.controller.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="vendors/bootstrap.min.css">
+</head>
+
+<body class="well" ng-controller="PeopleController as ctrl" class="container">
+    <h1 class="text-center">Rho Mongo Solo</h1>
+
+    <div class="col-md-8 col-md-offset-2">
+
+
+    <div class="row">
+
+
+        <form >
+            <div class="form-group row">
+
+                <label class="col-md-3 col-form-label">Name:</label>
+                  <div class="col-md-8">
+                <input class=" form-control" type="text" ng-model="ctrl.name">
+            </div>
+        </div>
+        <div class="form-group row">
+
+                <label class=" col-md-3 col-form-label">Hometown:</label>
+<div class="col-md-8">
+                    <input class="form-control" type="text" ng-model="ctrl.hometown" />
+</div>
+            </div>
+
+            <div class="form-group row">
+                <label class=" col-md-3 col-form-label">Favorite Movie:</label>
+<div class="col-md-8">
+                    <input class="form-control" type="text" ng-model="ctrl.favoriteMovie" />
+                </div>
+</div>
+        <div class="form-group row">
+
+                <div class="col-md-6 col-md-offset-6">
+                    <button class="btn btn-primary" ng-click="ctrl.addPerson()">Add</button>
+                </div>
+
+        </div>
+        </form>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" ng-click="ctrl.listPeople()">Get People</button>
+            <div class="form-group row">
+        <label class=" col-md-3 col-form-label">Sort By:</label>
+        <div class="col-md-8">
+        <select class="dropdown form-control" ng-model="ctrl.selected" ng-change="ctrl.orderByMe(ctrl.selected)">
+            <option value="name" >Sort by Name</option>
+            <option value="hometown">Sort by Hometown</option>
+            <option value="favoriteMovie">Sort by Favorite Movie</option>
+        </select>
+    </div>
+    </div>
+
+        <table class="table table-striped table-hover">
+            <thead >
+                <th class="text-center warning">Name</th>
+                <th class="text-center warning">Hometown</th>
+                <th class="text-center warning">Favorite Movie</th>
+            </thead>
+            <tr ng-repeat="person in ctrl.people | orderBy:ctrl.myOrderBy">
+                <td>{{person.name}}</td>
+                <td>{{person.hometown}}</td>
+                <td>{{person.favoriteMovie}}</td>
+            </tr>
+        </table>
+
+</div>
+</body>
+</div>
+</html>
